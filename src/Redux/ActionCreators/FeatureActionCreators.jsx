@@ -1,8 +1,8 @@
-import { CREATE_FEATUREGET_FEATURE, DELGET_FEATURE, ETE_FEATUREGET_FEATURE, GET_FEATURE, UPDATE_FEATUREGET_FEATURE } from "../Constant"
+import { CREATE_FEATURE, DELETE_FEATURE, GET_FEATURE, UPDATE_FEATURE } from "../Constant"
 
 export function createFeature(data) {
     return {
-        type: CREATE_FEATUREGET_FEATURE,
+        type: CREATE_FEATURE,
         payload: data
     }
 }
@@ -15,14 +15,14 @@ export function getFeature() {
 
 export function updateFeature(data) {
     return {
-        type: UPDATE_FEATUREGET_FEATURE,
+        type: UPDATE_FEATURE,
         payload: data
     }
 }
 
 export function deleteFeature(data) {
     return {
-        type: DELETE_FEATUREGET_FEATURE,
+        type: DELETE_FEATURE,
         payload: data
     }
 }

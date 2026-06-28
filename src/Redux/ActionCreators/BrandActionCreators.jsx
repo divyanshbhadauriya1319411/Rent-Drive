@@ -1,4 +1,4 @@
-import { CREATE_BRANCREATE_BRAND, D, DELETE_BRANDCREATE_BRAND, GET_BRANDCREATE_BRAND, UPDATE_BRANDCREATE_BRAND } from "../Constant"
+import { CREATE_BRAND, DELETE_BRAND, GET_BRAND, UPDATE_BRAND } from "../Constant"
 
 export function createBrand(data) {
     return {
@@ -9,20 +9,20 @@ export function createBrand(data) {
 
 export function getBrand() {
     return {
-        type: GET_BRANDCREATE_BRAND
+        type: GET_BRAND
     }
 }
 
 export function updateBrand(data) {
     return {
-        type: UPDATE_BRANDCREATE_BRAND,
+        type: UPDATE_BRAND,
         payload: data
     }
 }
 
 export function deleteBrand(data) {
     return {
-        type: DELETE_BRANDCREATE_BRAND,
+        type: DELETE_BRAND,
         payload: data
     }
 }

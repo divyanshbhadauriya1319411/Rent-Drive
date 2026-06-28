@@ -16,7 +16,6 @@ export default function AdminCategoryPage() {
     function deleteRecord(id) {
         if (window.confirm("Are You Sure You Want to Delete That Record")) {
             dispatch(deleteCategory({ id: id }))
-            setData(data.filter(x => x.id !== id))
         }
     }
 
@@ -55,14 +54,21 @@ export default function AdminCategoryPage() {
                                 </thead>
                                 <tbody>
                                     {data.map(item => {
+                                        const base = import.meta.env.VITE_APP_IMAGE_SERVER || ""
+                                        const pic = item.pic || ""
+                                        const picPath = pic.startsWith("/") ? pic : pic ? `/${pic}` : ""
+                                        const picUrl = `${base}${picPath}`
                                         return <tr key={item.id}>
                                             <td>{item.id}</td>
                                             <td>{item.name}</td>
                                             <td>
-                                                {item.pic?console.log("true"):console.log("false")}
-                                                <Link to={`${import.meta.env.VITE_APP_IMAGE_SERVER}${item.pic}`} target='_blank'>
-                                                    <img src={`${import.meta.env.VITE_APP_IMAGE_SERVER}${item.pic}`} height={60} width={100} alt="" />
-                                                </Link>
+                                                {picUrl
+                                                    ? <Link to={picUrl} target='_blank'>
+                                                        <img src={picUrl} height={60} width={100} alt={item.name}
+                                                            onError={(e) => { e.currentTarget.src = "https://via.placeholder.com/100x60?text=No+Image" }} />
+                                                    </Link>
+                                                    : <span className="text-muted">No image</span>}
+                                                <div className="small text-muted">{pic || "(no pic field)"}</div>
                                             </td>
                                             <td>{item.status ? "Active" : "Inactive"}</td>
                                             <td><Link to={`/admin/category/update/${item.id}`} className='btn btn-primary'><i className='bi bi-pencil-square'></i></Link></td>

@@ -1,8 +1,8 @@
-import { CREATE_FAQGET_FAQ, DELETE_FAQGET_FAQ, GET_FAQ, UPDATE_FAQGET_FAQ } from "../Constant"
+import { CREATE_FAQ, DELETE_FAQ, GET_FAQ, UPDATE_FAQ } from "../Constant"
 
 export function createFaq(data) {
     return {
-        type: CREATE_FAQGET_FAQ,
+        type: CREATE_FAQ,
         payload: data
     }
 }
@@ -15,14 +15,14 @@ export function getFaq() {
 
 export function updateFaq(data) {
     return {
-        type: UPDATE_FAQGET_FAQ,
+        type: UPDATE_FAQ,
         payload: data
     }
 }
 
 export function deleteFaq(data) {
     return {
-        type: DELETE_FAQGET_FAQ,
+        type: DELETE_FAQ,
         payload: data
     }
 }

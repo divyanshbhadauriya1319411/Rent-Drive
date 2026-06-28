@@ -1,8 +1,8 @@
-import { CREATE_SETTINGGET_SETTING, DELETE_SETTINGGET_SETTING, GET_SETTING, UPDATE_SETTINGGET_SETTING } from "../Constant"
+import { CREATE_SETTING, DELETE_SETTING, GET_SETTING, UPDATE_SETTING } from "../Constant"
 
 export function createSetting(data) {
     return {
-        type: CREATE_SETTINGGET_SETTING,
+        type: CREATE_SETTING,
         payload: data
     }
 }
@@ -15,14 +15,14 @@ export function getSetting() {
 
 export function updateSetting(data) {
     return {
-        type: UPDATE_SETTINGGET_SETTING,
+        type: UPDATE_SETTING,
         payload: data
     }
 }
 
 export function deleteSetting(data) {
     return {
-        type: DELETE_SETTINGGET_SETTING,
+        type: DELETE_SETTING,
         payload: data
     }
 }

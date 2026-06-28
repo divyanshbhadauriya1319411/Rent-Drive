@@ -1,8 +1,8 @@
-import { CREATE_CARGET_CAR, DELETGET_CAR, E_CARGET_CAR, GET_CAR, UPDATE_CARGET_CAR } from "../Constant"
+import { CREATE_CAR, DELETE_CAR, GET_CAR, UPDATE_CAR } from "../Constant"
 
 export function createCar(data) {
     return {
-        type: CREATE_CARGET_CAR,
+        type: CREATE_CAR,
         payload: data
     }
 }
@@ -15,14 +15,14 @@ export function getCar() {
 
 export function updateCar(data) {
     return {
-        type: UPDATE_CARGET_CAR,
+        type: UPDATE_CAR,
         payload: data
     }
 }
 
 export function deleteCar(data) {
     return {
-        type: DELETE_CARGET_CAR,
+        type: DELETE_CAR,
         payload: data
     }
 }
