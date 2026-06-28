@@ -1,8 +1,8 @@
 import React from 'react'
 
 export default function About() {
-  return (
-     <div className="container-fluid overflow-hidden about py-5">
+    return (
+        <div className="container-fluid overflow-hidden about py-5">
             <div className="container py-5">
                 <div className="row g-5">
                     <div className="col-xl-6 wow fadeInLeft" data-wow-delay="0.2s">
@@ -16,7 +16,7 @@ export default function About() {
                                 <div className="col-lg-6">
                                     <div className="about-item-inner border p-4">
                                         <div className="about-icon mb-4">
-                                            <img src="img/about-icon-1.png" className="img-fluid w-50 h-50" alt="Icon"/>
+                                            <img src="img/about-icon-1.png" className="img-fluid w-50 h-50" alt="Icon" />
                                         </div>
                                         <h5 className="mb-3">Our Vision</h5>
                                         <p className="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
@@ -25,7 +25,7 @@ export default function About() {
                                 <div className="col-lg-6">
                                     <div className="about-item-inner border p-4">
                                         <div className="about-icon mb-4">
-                                            <img src="img/about-icon-2.png" className="img-fluid h-50 w-50" alt="Icon"/>
+                                            <img src="img/about-icon-2.png" className="img-fluid h-50 w-50" alt="Icon" />
                                         </div>
                                         <h5 className="mb-3">Our Mision</h5>
                                         <p className="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
@@ -54,7 +54,7 @@ export default function About() {
                                 </div>
                                 <div className="col-lg-7">
                                     <div className="d-flex align-items-center">
-                                        <img src="img/attachment-img.jpg" className="img-fluid rounded-circle border border-4 border-secondary" style={{width: "100px", height: "100px"}} alt="Image"/>
+                                        <img src="img/attachment-img.jpg" className="img-fluid rounded-circle border border-4 border-secondary" style={{ width: "100px", height: "100px" }} alt="Image" />
                                         <div className="ms-4">
                                             <h4>William Burgess</h4>
                                             <p className="mb-0">Carveo Founder</p>
@@ -67,15 +67,15 @@ export default function About() {
                     <div className="col-xl-6 wow fadeInRight" data-wow-delay="0.2s">
                         <div className="about-img">
                             <div className="img-1">
-                                <img src="img/about-img.jpg" className="img-fluid rounded h-100 w-100" alt=""/>
+                                <img src="img/about-img.jpg" className="img-fluid rounded h-100 w-100" alt="" />
                             </div>
                             <div className="img-2">
-                                <img src="img/about-img-1.jpg" className="img-fluid rounded w-100" alt=""/>
+                                <img src="img/about-img-1.jpg" className="img-fluid rounded w-100" alt="" />
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-  )
+    )
 }
