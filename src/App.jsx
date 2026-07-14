@@ -22,9 +22,13 @@ import AdminCategoryPage from './Pages/Admin/Category/AdminCategoryPage'
 import AdminCreateCategoryPage from './Pages/Admin/Category/AdminCreateCategoryPage'
 import AdminUpdateCategoryPage from './Pages/Admin/Category/AdminUpdateCategoryPage'
 
-import AdminBrandPage from './Pages/Admin/Brand/AdminBrandPage'
-import AdminCreateBrandPage from './Pages/Admin/Brand/AdminCreateBrandPage'
-import AdminUpdateBrandPage from './Pages/Admin/Brand/AdminUpdateBrandPage'
+import AdminBrandPage from './Pages/Admin/brand/AdminBrandPage'
+import AdminCreateBrandPage from './Pages/Admin/brand/AdminCreateBrandPage'
+import AdminUpdateBrandPage from './Pages/Admin/brand/AdminUpdateBrandPage'
+
+import AdminFeaturePage from './Pages/Admin/feature/AdminFeaturePage'
+import AdminCreateFeaturePage from './Pages/Admin/feature/AdminCreateFeaturePage'
+import AdminUpdateFeaturePage from './Pages/Admin/feature/AdminUpdateFeaturePage'
 
 export default function App() {
     return (
@@ -45,9 +49,19 @@ export default function App() {
                 {/* Admin Routes */}
                 <Route path='/admin' element={<AdminHomePage />} />
 
+                <Route path='/admin/category' element={<AdminCategoryPage />} />
+                <Route path='/admin/category/create' element={<AdminCreateCategoryPage />} />
+                <Route path='/admin/category/update/:id' element={<AdminUpdateCategoryPage />} />
+
+
                 <Route path='/admin/brand' element={<AdminBrandPage />} />
                 <Route path='/admin/brand/create' element={<AdminCreateBrandPage />} />
                 <Route path='/admin/brand/update/:id' element={<AdminUpdateBrandPage />} />
+
+                <Route path='/admin/feature' element={<AdminFeaturePage />} />
+                <Route path='/admin/feature/create' element={<AdminCreateFeaturePage />} />
+                <Route path='/admin/feature/update/:id' element={<AdminUpdateFeaturePage />} />
+
 
 
                 <Route path='/*' element={<ErrorPage />} />
