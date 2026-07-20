@@ -30,6 +30,23 @@ import AdminFeaturePage from './Pages/Admin/feature/AdminFeaturePage'
 import AdminCreateFeaturePage from './Pages/Admin/feature/AdminCreateFeaturePage'
 import AdminUpdateFeaturePage from './Pages/Admin/feature/AdminUpdateFeaturePage'
 
+import AdminServicePage from './Pages/Admin/service/AdminServicePage'
+import AdminCreateServicePage from './Pages/Admin/service/AdminCreateServicePage'
+import AdminUpdateServicePage from './Pages/Admin/service/AdminUpdateServicePage'
+
+import AdminFaqPage from './Pages/Admin/faq/AdminFaqPage'
+import AdminCreateFaqPage from './Pages/Admin/faq/AdminCreateFaqPage'
+import AdminUpdateFaqPage from './Pages/Admin/faq/AdminUpdateFaqPage'
+
+import AdminSettingPage from './Pages/Admin/setting/AdminSettingPage'
+import AdminCreateSettingPage from './Pages/Admin/setting/AdminCreateSettingPage'
+import AdminUpdateSettingPage from './Pages/Admin/setting/AdminUpdateSettingPage'
+
+import AdminCarPage from './Pages/Admin/car/AdminCarPage'
+import AdminCreateCarPage from './Pages/Admin/car/AdminCreateCarPage'
+import AdminUpdateCarPage from './Pages/Admin/car/AdminUpdateCarPage'
+
+
 export default function App() {
     return (
         <BrowserRouter>
@@ -61,6 +78,25 @@ export default function App() {
                 <Route path='/admin/feature' element={<AdminFeaturePage />} />
                 <Route path='/admin/feature/create' element={<AdminCreateFeaturePage />} />
                 <Route path='/admin/feature/update/:id' element={<AdminUpdateFeaturePage />} />
+
+
+                <Route path='/admin/service' element={<AdminServicePage />} />
+                <Route path='/admin/service/create' element={<AdminCreateServicePage />} />
+                <Route path='/admin/service/update/:id' element={<AdminUpdateServicePage />} />
+
+                <Route path='/admin/faq' element={<AdminFaqPage />} />
+                <Route path='/admin/faq/create' element={<AdminCreateFaqPage />} />
+                <Route path='/admin/faq/update/:id' element={<AdminUpdateFaqPage />} />
+
+
+                <Route path='/admin/setting' element={<AdminSettingPage />} />
+                <Route path='/admin/setting/create' element={<AdminCreateSettingPage />} />
+                <Route path='/admin/setting/update/:id' element={<AdminUpdateSettingPage />} />
+
+                <Route path='/admin/car' element={<AdminCarPage />} />
+                <Route path='/admin/car/create' element={<AdminCreateCarPage />} />
+                <Route path='/admin/car/update/:id' element={<AdminUpdateCarPage />} />
+
 
 
 

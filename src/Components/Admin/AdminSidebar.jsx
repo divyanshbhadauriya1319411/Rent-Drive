@@ -8,7 +8,7 @@ export default function AdminSidebar() {
             <Link to="/admin" className="mb-1 list-group-item list-group-item-action active" aria-current="true"> <i className='bi bi-house-door fs-5'></i><span className='float-end'>Home</span></Link>
             <Link to="/admin/category" className="mb-1 list-group-item list-group-item-action active" aria-current="true"> <i className='bi bi-list-check fs-5'></i><span className='float-end'>Category</span></Link>
             <Link to="/admin/brand" className="mb-1 list-group-item list-group-item-action active" aria-current="true"> <i className='bi bi-list fs-5'></i><span className='float-end'>Brand</span></Link>
-            <Link to="/admin/car" className="mb-1 list-group-item list-group-item-action active" aria-current="true"> <i className='bi bi-car-alt fs-5'></i><span className='float-end'>car</span></Link>
+            <Link to="/admin/car" className="mb-1 list-group-item list-group-item-action active" aria-current="true"> <i className='bi bi-car-front fs-5'></i><span className='float-end'>car</span></Link>
             <Link to="/admin/feature" className="mb-1 list-group-item list-group-item-action active" aria-current="true"> <i className='bi bi-tag fs-5'></i><span className='float-end'>feature</span></Link>
             <Link to="/admin/service" className="mb-1 list-group-item list-group-item-action active" aria-current="true"> <i className='bi bi-tags fs-5'></i><span className='float-end'>service</span></Link>
             <Link to="/admin/faq" className="mb-1 list-group-item list-group-item-action active" aria-current="true"> <i className='bi bi-question-circle fs-5'></i><span className='float-end'>faq</span></Link>
