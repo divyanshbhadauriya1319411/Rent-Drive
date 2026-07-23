@@ -3,10 +3,11 @@ import AdminSidebar from '../../../Components/Admin/AdminSidebar'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
+import DataTable from 'datatables.net-dt';
+import "datatables.net-dt/css/dataTables.dataTables.min.css"
 
 
-import { getCar, deleteCar } from "../../../Redux/ActionCreators/carActionCreators"
-import DataTable from 'datatables.net-dt'
+import { getCar, deleteCar } from "../../../Redux/ActionCreators/CarActionCreators"
 export default function AdminCarPage() {
     let [data, setData] = useState([])
 
@@ -16,6 +17,7 @@ export default function AdminCarPage() {
     function deleteRecord(id) {
         if (window.confirm("Are You Sure You Want to Delete That Record")) {
             dispatch(deleteCar({ id: id }))
+            setData(data.filter(x => x.id !== id))
         }
     }
 
@@ -46,6 +48,17 @@ export default function AdminCarPage() {
                                     <tr>
                                         <th>Id</th>
                                         <th>Name</th>
+                                        <th>Registration Number</th>
+                                        <th>Driving Mode</th>
+                                        <th>Driver</th>
+                                        <th>Type</th>
+                                        <th>Seating Capacity</th>
+                                        <th>Category</th>
+                                        <th>Brand</th>
+                                        <th>Base Rent Amount</th>
+                                        <th>Discount</th>
+                                        <th>Final Rent Amount</th>
+                                        <th>City</th>
                                         <th>Pic</th>
                                         <th>Status</th>
                                         <th></th>
@@ -54,21 +67,28 @@ export default function AdminCarPage() {
                                 </thead>
                                 <tbody>
                                     {data.map(item => {
-                                        const base = import.meta.env.VITE_APP_IMAGE_SERVER || ""
-                                        const pic = item.pic || ""
-                                        const picPath = pic.startsWith("/") ? pic : pic ? `/${pic}` : ""
-                                        const picUrl = `${base}${picPath}`
                                         return <tr key={item.id}>
                                             <td>{item.id}</td>
                                             <td>{item.name}</td>
+                                            <td>{item.registrationNumber}</td>
+                                            <td>{item.drivingMode}</td>
+                                            <td>{item.driver ? "Yes" : "No"}</td>
+                                            <td>{item.type}</td>
+                                            <td>{item.seatingCapacity}</td>
+                                            <td>{item.category}</td>
+                                            <td>{item.brand}</td>
+                                            <td>&#8377;{item.baseRentAmount}</td>
+                                            <td>{item.discount}% Off</td>
+                                            <td>&#8377;{item.finalRentAmount}</td>
+                                            <td>{item.city}</td>
                                             <td>
-                                                {picUrl
-                                                    ? <Link to={picUrl} target='_blank'>
-                                                        <img src={picUrl} height={60} width={100} alt={item.name}
-                                                            onError={(e) => { e.currentTarget.src = "https://via.placeholder.com/100x60?text=No+Image" }} />
-                                                    </Link>
-                                                    : <span className="text-muted">No image</span>}
-                                                <div className="small text-muted">{pic || "(no pic field)"}</div>
+                                                <div style={{ width: 400 }}>
+                                                    {item.pic.map((pic, index) => {
+                                                        return <Link to={`${import.meta.env.VITE_APP_IMAGE_SERVER}${pic}`} target='_blank'>
+                                                            <img src={`${import.meta.env.VITE_APP_IMAGE_SERVER}${pic}`} height={60} width={100} className='m-1' alt="" />
+                                                        </Link>
+                                                    })}
+                                                </div>
                                             </td>
                                             <td>{item.status ? "Active" : "Inactive"}</td>
                                             <td><Link to={`/admin/car/update/${item.id}`} className='btn btn-primary'><i className='bi bi-pencil-square'></i></Link></td>

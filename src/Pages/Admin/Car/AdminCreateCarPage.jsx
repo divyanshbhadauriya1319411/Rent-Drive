@@ -23,7 +23,7 @@ export default function AdminCreateCarPage() {
         baseRentAmount: 0,
         discount: 0,
         finalRentAmount: 0,
-        city: "",
+        address: "",
         pic: [],
         status: true
     })
@@ -32,7 +32,7 @@ export default function AdminCreateCarPage() {
         registrationNumber: 'Registration Number Field is Mendatory',
         baseRentAmount: 'Base Rent Amount Field is Mendatory',
         discount: 'Discount Field is Mendatory',
-        city: 'City Name Field is Mendatory',
+        address: 'Address Field is Mendatory',
         pic: 'Pic Field is Mendatory'
     })
     let [show, setShow] = useState(false)
@@ -51,19 +51,61 @@ export default function AdminCreateCarPage() {
         setData({ ...data, [name]: (name === "status" || name === "driver") ? (value === "1" ? true : false) : value })
         setErrorMessage({ ...errorMessage, [name]: name === "pic" ? ImageValidators(e) : TextValidators(e) })
     }
-    function postData(e) {
+    async function postData(e) {
         e.preventDefault()
         let error = Object.values(errorMessage).find(x => x !== "")
         if (error)
             setShow(true)
         else {
+            let response = await fetch(`https://nominatim.openstreetmap.org/search?q=${data.address}&format=jsonv2&limit=1`)
+            response = await response.json()
 
-            dispatch(createCar({ ...data }))
+            if (response.length === 0) {
+                setErrorMessage({ ...errorMessage, address: "Invalid Address, Please Enter Correct Address" })
+                setShow(true)
+                return
+            }
+
+            let bp = parseInt(data.baseRentAmount)
+            let d = parseInt(data.discount)
+            let fp = parseInt(bp - bp * d / 100)
+
+
+            dispatch(createCar({
+                ...data,
+                category: data.category || CategoryStateData[0].name,
+                brand: data.brand || BrandStateData[0].name,
+                baseRentAmount: bp,
+                discount: d,
+                finalRentAmount: fp,
+                address: {
+                    address: data.address,
+                    lat: response[0].lat,
+                    lon: response[0].lon,
+                }
+            }))
 
             // let formData = new FormData()
-            // formData.append("name",data.name)
-            // formData.append("pic",data.pic)
-            // formData.append("status",data.status)
+            // formData.append("name", data.name)
+            // formData.append("registrationNumber", data.registrationNumber)
+            // formData.append("drivingMode", data.drivingMode)
+            // formData.append("drive", data.drive)
+            // formData.append("type", data.type)
+            // formData.append("address", {
+            //   address: data.adddress,
+            //   lat: response[0].lat,
+            //   lon: response[0].lon,
+            // })
+            // formData.append("seatingCapacity", data.seatingCapacity)
+            // formData.append("category", data.category || CategoryStateData[0]._id)
+            // formData.append("brand", data.brand || BrandStateData[0]._id)
+            // formData.append("baseRentAmount", bp)
+            // formData.append("discount", d)
+            // formData.append("finalRentAmount", fp)
+            // Array.from(data.pic).forEach(x => {
+            //   formData.append("pic", x)
+            // })
+            // formData.append("status", data.status)
             // dispatch(createCar(formData))
 
             navigate("/admin/car")
@@ -108,6 +150,7 @@ export default function AdminCreateCarPage() {
                                     <select name="category" onChange={getInputData} className='form-select border-primary'>
                                         {CategoryStateData.filter(x => x.status).map((item) => {
                                             return <option key={item.id}>{item.name}</option>
+                                            // return <option key={item.id} value={item._id}>{item.name}</option>
                                         })}
                                     </select>
                                 </div>
@@ -117,15 +160,16 @@ export default function AdminCreateCarPage() {
                                     <select name="brand" onChange={getInputData} className='form-select border-primary'>
                                         {BrandStateData.filter(x => x.status).map((item) => {
                                             return <option key={item.id}>{item.name}</option>
+                                            // return <option key={item.id} value={data._id}>{item.name}</option>
                                         })}
                                     </select>
                                 </div>
 
 
                                 <div className="col-md-6 mb-3">
-                                    <label>Basic Rent Amount Par Day*</label>
-                                    <input type="number" name="basicRentAmount" onChange={getInputData} placeholder='Basic Rent Amount Par Day' className={`form-control ${show && errorMessage.basicRentAmount ? 'border-danger' : 'border-dark'}`} />
-                                    {show && errorMessage.basicRentAmount ? <p className='text-danger text-capitalize'>{errorMessage.basicRentAmount}</p> : null}
+                                    <label>Base Rent Amount Par Day*</label>
+                                    <input type="number" name="baseRentAmount" onChange={getInputData} placeholder='Basic Rent Amount Par Day' className={`form-control ${show && errorMessage.baseRentAmount ? 'border-danger' : 'border-dark'}`} />
+                                    {show && errorMessage.baseRentAmount ? <p className='text-danger text-capitalize'>{errorMessage.baseRentAmount}</p> : null}
                                 </div>
 
                                 <div className="col-md-6 mb-3">
@@ -152,10 +196,10 @@ export default function AdminCreateCarPage() {
 
                                 <div className="col-xl-3 col-md-6 mb-3">
                                     <label>Seating Capacity*</label>
-                                    <select name="seatingCapacity" onChange={getInputData} className='form-select border-primary'>
+                                    <select name="seatingCapacity" value={5} onChange={getInputData} className='form-select border-primary'>
                                         <option>2</option>
                                         <option>4</option>
-                                        <option selected>5</option>
+                                        <option>5</option>
                                         <option>7</option>
                                         <option>11</option>
                                     </select>
@@ -172,19 +216,21 @@ export default function AdminCreateCarPage() {
                                     </select>
                                 </div>
 
-                                <div className="col-xl-4 col-md-6 mb-3">
+                                <div className="col-12 mb-3">
+                                    <label>Address*</label>
+                                    <input type="text" name="address" onChange={getInputData} placeholder='Address' className={`form-control ${show && errorMessage.address ? 'border-danger' : 'border-dark'}`} />
+                                    {show && errorMessage.address ? <p className='text-danger text-capitalize'>{errorMessage.address}</p> : null}
+                                </div>
+
+                                <div className="col-xl-6 col-md-6 mb-3">
                                     <label>Pic*</label>
                                     <input type="file" name="pic" multiple onChange={getInputData} className={`form-control ${show && errorMessage.pic ? 'border-danger' : 'border-dark'}`} />
                                     {show && errorMessage.pic ? <p className='text-danger text-capitalize'>{errorMessage.pic}</p> : null}
                                 </div>
 
-                                <div className="col-xl-4 col-md-6 mb-3">
-                                    <label>City Name*</label>
-                                    <input type="text" name="city" onChange={getInputData} placeholder='City Name' className={`form-control ${show && errorMessage.city ? 'border-danger' : 'border-dark'}`} />
-                                    {show && errorMessage.city ? <p className='text-danger text-capitalize'>{errorMessage.city}</p> : null}
-                                </div>
 
-                                <div className="col-xl-4 col-md-6 mb-3">
+
+                                <div className="col-xl-6 col-md-6 mb-3">
                                     <label>Status*</label>
                                     <select name="status" className='form-select border-dark' onChange={getInputData}>
                                         <option value="1">Active</option>

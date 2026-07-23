@@ -18,7 +18,7 @@ export default function AdminHomePge() {
                                 <td>Divyansh Bhadauriya</td>
                             </tr>
                             <tr>
-                                <th>Useername</th>
+                                <th>Username</th>
                                 <td>Msd@1319411</td>
                             </tr>
                             <tr>
