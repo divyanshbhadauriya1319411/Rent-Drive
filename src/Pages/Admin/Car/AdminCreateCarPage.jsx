@@ -36,6 +36,7 @@ export default function AdminCreateCarPage() {
         pic: 'Pic Field is Mendatory'
     })
     let [show, setShow] = useState(false)
+    let [showWaitButton, setShowWaitButton] = useState(false)
 
     let CategoryStateData = useSelector(state => state.CategoryStateData)
     let BrandStateData = useSelector(state => state.BrandStateData)
@@ -57,6 +58,7 @@ export default function AdminCreateCarPage() {
         if (error)
             setShow(true)
         else {
+            setShowWaitButton(true)
             let response = await fetch(`https://nominatim.openstreetmap.org/search?q=${data.address}&format=jsonv2&limit=1`)
             response = await response.json()
 
@@ -239,7 +241,7 @@ export default function AdminCreateCarPage() {
                                 </div>
 
                                 <div className="col-12 mb-3">
-                                    <button type='submit' className='btn btn-primary w-100'>Create</button>
+                                    <button type='submit' className='btn btn-primary w-100'>{showWaitButton ? "Please Wait..." : "Create"}</button>
                                 </div>
 
                             </div>

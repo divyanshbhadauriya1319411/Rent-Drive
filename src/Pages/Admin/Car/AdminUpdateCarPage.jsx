@@ -41,6 +41,8 @@ export default function AdminUpdateCarPage() {
     let [oldPics, setOldPics] = useState([])
     let [flag, setFlag] = useState(false)
 
+    let [showWaitButton, setShowWaitButton] = useState(false)
+
     let CarStateData = useSelector(state => state.CarStateData)
     let CategoryStateData = useSelector(state => state.CategoryStateData)
     let BrandStateData = useSelector(state => state.BrandStateData)
@@ -63,6 +65,7 @@ export default function AdminUpdateCarPage() {
         if (error)
             setShow(true)
         else {
+            setShowWaitButton(true)
             let response = await fetch(`https://nominatim.openstreetmap.org/search?q=${data.address}&format=jsonv2&limit=1`)
             response = await response.json()
 
@@ -275,7 +278,7 @@ export default function AdminUpdateCarPage() {
                                 </div>
 
                                 <div className="col-12 mb-3">
-                                    <button type='submit' className='btn btn-primary w-100'>Update</button>
+                                    <button type='submit' className='btn btn-primary w-100'>{showWaitButton ? "Please Wait..." : "Update"}</button>
                                 </div>
 
                             </div>
